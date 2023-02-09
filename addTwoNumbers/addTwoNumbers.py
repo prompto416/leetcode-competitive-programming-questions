@@ -48,10 +48,7 @@ def addTwoNumbers(l1, l2):
         except:
             break
 
-    
-    
-    
-    
+
 def myLen(l):
     
     count = 1
