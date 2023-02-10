@@ -7,21 +7,7 @@ class ListNode:
 
 def addTwoNumbers(l1, l2):
     
-    l1.reverse()
-    l2.reverse()
-    
-    x = ""
-    y = ""
-    for i in range(len(l1)):
-        x += str(l1[i])
-    for i in range(len(l2)):
-        y += str(l2[i])
-    temp = str((int(x) + int(y)))
-    temp = temp[::-1]
-    res = []
-    for i in range(len(temp)):
-        res.append(int(temp[i]))
-    return res
+    pass
     
     
 def myReverse(l):
@@ -48,7 +34,64 @@ def myLength(l):
         
     return count
 
-l1 = ListNode(1,ListNode(2,ListNode(3)))
+l1 = ListNode(9,ListNode(2,ListNode(9,ListNode(4))))
+l2 = ListNode(1,ListNode(2,ListNode(3)))
+res = ListNode()
+currentNode = ListNode()
+carry = 0
+sum = l1.val + l2.val 
+if sum >= 10:
+    sum -= 10 
+    carry += 1
+res.val = sum 
+l1= l1.next
+l2 = l2.next
+    
+while l1 or l2:
 
-print(myReverse(l1))
+    if l1 != None and l2 != None:
+       
+        sum = l1.val + l2.val + carry
+        carry = 0 
+        if sum >= 10:
+            sum -= 10 
+            carry += 1
+        print("sum",sum )       
+        l1= l1.next
+        l2 = l2.next
+        currentNode.val = sum
+        res.next = currentNode.val
+        currentNode = ListNode()
+    elif l1 != None and l2 == None:
+        sum = l1.val + carry
+        carry = 0
+        if sum >= 10:
+            sum -= 10 
+            carry += 1
+        print("l1",sum)
+        l1 = l1.next
+        currentNode.val = sum
+        res.next = currentNode.val
+        currentNode = ListNode()
+    elif l1 == None and l2 != None:
+        sum = l2.val + carry
+        carry = 0
+        if sum >= 10:
+            sum -= 10
+            carry += 1
+        
+        print("l2",sum)
+        l2 = l2.next
+        currentNode.val = sum
+        res.next = currentNode.val
+        currentNode = ListNode()
+    else:
+        break
+    
+    
+    
+    
+
+
+
 # print(addTwoNumbers([2,4,3],[5,6,4]))
