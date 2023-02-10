@@ -1,41 +1,26 @@
 def isValid(s):
-    pivot = s[0]
-    res = False
-
-    i = 1
-    while i < len(s):
-
-        a = ord(pivot)
-        b = ord(s[i])
-        print(a,b,"start")
-        if (a<b):
-            if (b-a == 1) or (b-a == 2):
-                print(a,b)
-                res = True
-        else:
-            res = False
-        if i < len(s)-1:
-            pivot = s[i+1]
-            i+= 1
-        i += 1
-    return res
+    myStack = []
+    
+    for i in range(len(s)):
         
+        if s[i] == "(" or s[i] == "[" or s[i] == "{":
+            
+            myStack.append(s[i])
+        elif (s[i] == ")" or s[i] == "]" or s[i] == "}") :
+            myStack.append(s[i])
+            if s[i] == ")" and myStack[len(myStack)-2] == "(":
+                for i in range(2):
+                    myStack.pop()
+            elif s[i] == "]" and myStack[len(myStack)-2] == "[":
+                for i in range(2):
+                    myStack.pop()
+            elif s[i] == "}" and myStack[len(myStack)-2] == "{":
+                for i in range(2):
+                    myStack.pop()
+            
 
-print(ord("("))
-print(ord(")"))
-
-print(ord("["))
-print(ord("]"))
-
-
-print(ord("{"))
-print(ord("}"))
-
-    
-
+    return (len(myStack) == 0)
+        
     
     
-    
-    
-    
-print(isValid("(){}}{"))
+print(isValid("()"))
