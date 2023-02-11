@@ -1,68 +1,135 @@
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-
 def addTwoNumbers(l1, l2):
-    len1 = myLen(l1)
-    len2 = myLen(l2)
-    final = l1
-    most = []
-    temp1 = []
-    temp2 = []
-    if len1 > len2: 
-        most = l1
-    else:
-        most = l2
-    temp = l1
-    while True:
-        try:
-            temp1.append(temp.val)
-        
-            temp = temp.next
-        except:
-            break
-    temp = l2
-    while True:
-        try:
-            temp2.append(temp.val)
-        
-            temp = temp.next
-        except:
-            break
-    temp1.reverse()
-    temp2.reverse()
-    x = ""
-    y= ""
-    for i in range(len(temp1)):
-        x += str(temp1[i])
-    for i in range(len(temp2)):
-        y += str(temp2[i])
-    sum = str(int(x)+int(y))
-    count = myLen(most)
-    while count > 0:
-        try:
-            print(most.val)
-            most = most.next 
-        except:
-            break
-
-
-def myLen(l):
     
-    count = 1
-    while True:
-        if l.next != None:
-            count += 1
-            l = l.next
-        else:
-            break
+    dummy = ListNode()
+    cur = dummy
+    carry = 0 
+
+    
+    while l1 or l2:
+        if l1 and l2:
+            sum = l1.val + l2.val + carry 
+            carry = 0 
+            if sum >= 10:
+                carry = 1
+                sum -= 10 
+            cur.next = ListNode(sum)
+            cur = cur.next
+            #print(l1.val,l2.val,sum)
+            l1 = l1.next
+            l2 = l2.next
+            print(sum)
+        elif l1 and not l2:
+    
+            sum = l1.val + carry 
+            carry= 0 
+            if sum >= 10:
+                carry= 1
+                sum -= 10 
+            cur.next = ListNode(sum)
+            cur = cur.next
+            l1 = l1.next
+            print(sum)
+        elif l2 and not l1:
         
-    return count
+            sum = l2.val + carry
+            carry = 0 
+            if sum >= 10:
+                carry= 1
+                sum -= 10 
+            cur.next = ListNode(sum)
+            cur = cur.next
+            l2 = l2.next
+            print(sum)
+    if carry > 0:
+        cur.next = ListNode(1)
+        cur = cur.next
+    return dummy.next
 
 
-l1 = ListNode(5,ListNode(6,ListNode(7,ListNode(8))))
-l2 = ListNode(2,ListNode(4,ListNode(3)))
 
-print(addTwoNumbers(l1,l2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+# def addTwoNumbers(l1, l2):
+    
+#     dummy = ListNode()
+#     cur = dummy
+#     carry = 0 
+  
+    
+#     while l1 or l2:
+#         if l1 != None and l2 != None:
+          
+#             sum = l1.val + l2.val + carry
+       
+ 
+#             carry = 0 
+#             if sum >= 10:
+#                 carry = 1
+#                 sum -= 10 
+#             cur.next = ListNode(sum)
+#             cur = cur.next
+#             #print(l1.val,l2.val,sum)
+#             l1 = l1.next
+#             l2 = l2.next
+        
+#         elif( l1 != None) and ( l2 == None):
+      
+#             sum = l1.val + carry 
+#             carry= 0 
+#             if sum >= 10:
+#                 carry= 1
+#                 sum -= 10 
+#             cur.next = ListNode(sum)
+#             cur = cur.next
+#             l1 = l1.next
+          
+#         elif (l2 != None) and (l1 == None):
+        
+#             sum = l2.val + carry
+#             carry = 0 
+#             if sum >= 10:
+#                 carry= 1
+#                 sum -= 10 
+#             cur.next = ListNode(sum)
+#             cur = cur.next
+#             l2 = l2.next
+            
+#     if carry > 0 :
+#         cur.next = ListNode(1)
+#         cur = cur.next
+
+#     return dummy.next
+            
+    
+   
+
+# l1 = ListNode(5,ListNode(6,ListNode(7,ListNode(8))))
+# l2 = ListNode(2,ListNode(4,ListNode(3)))
+
+
+# l1 = ListNode(1,ListNode(2,ListNode(3)))
+# l2 = ListNode(9,ListNode(9,ListNode(3,ListNode(4))))
+# addTwoNumbers(l1,l2)
+# print()
