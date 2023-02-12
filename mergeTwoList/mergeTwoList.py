@@ -55,9 +55,10 @@ def mergeTwoLists(list1, list2):
     #for debugging
    
     res = dummy.next
-    while res:
-        print(res.val)
-        res = res.next
+    #for dobule checking
+    # while res:
+    #     print(res.val)
+    #     res = res.next
     return res
         
     
