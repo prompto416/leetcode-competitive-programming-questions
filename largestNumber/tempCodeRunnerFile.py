@@ -1,2 +1,0 @@
-
-            del temp[index]
