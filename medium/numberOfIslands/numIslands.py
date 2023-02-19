@@ -24,7 +24,7 @@ def numIslands( grid):
                 print(grid[i],grid[i][j])
                 count += 1
                 mybfs(i,j)
-    print(count)
+    return count
     
 grid = [
   ["1","1","0","0","0"],

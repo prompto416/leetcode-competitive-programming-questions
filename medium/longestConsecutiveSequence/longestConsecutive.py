@@ -1,26 +1,24 @@
 def longestConsecutive( nums: list) -> int:
-        nums.sort()
-        if len(nums) == 1:
-            return 1 
-        elif len(nums) == 2 and abs(nums[0]-nums[1])== 1:
-            return 2
-        start = False
-        mem = []
-        print(nums)
-        for i in range(len(nums)-1):
-            if abs(nums[i+1] - nums[i]) == 1 and start == False:
-                mem.append(i)
-                start = True
-            elif start == True and nums[i+1] - nums[i] !=1:
-                mem.append(i)
-                start= False
-            elif i == len(nums)-2 :
-                print(i,len(nums)-2)
-                mem.append(i)
+    numSet = set(nums)
+    print(numSet)
+    
+    longest = 0
+    
+    for n in numSet:
+        if (n-1) not in numSet:
+            length = 0
+            while (n+length) in numSet:
+                length += 1
+            longest = max(longest,length)
             
-        print(mem)
-        return max(mem)
+    return longest
+            
+#[1,2,3,4,100,200]
+    
+    
+        
             
             
             
-print(longestConsecutive([0,3,7,2,5,8,4,6,0,1]))
+# print(longestConsecutive([0,3,7,2,5,8,4,6,0,1,100,200]))
+print(longestConsecutive([100,4,200,1,3,2]))
