@@ -9,15 +9,15 @@ def combinationSum( candidates, target):
     
     for c in candidates:
         for i in range(1,target+1):
-            print(i,c)
+            # print(i,c)
             if i < c:continue
             #append basic equal value
             if i == c:
                 dp[i].append([c])
-                print("append",i,c,dp)
+                # print("append",i,c,dp)
             #append current dp cell with cell[i-c]
             else:
-                print("dp[i-c]",dp[i-c])
+                # print("dp[i-c]",dp[i-c])
                 #dp[i-c] explanation: for example we have candidate 3 and target is 5 
                 #so c=3 and i=5 then 5-3=2 which is the remaning value we need since we already have 3 we need only 2 more 
                 #so we pick a previous solution of remaning target=2 in which we have already calculated from previous iteration i=j=2 ; dp[2] = [1,1],[2] (note that dp[target] = solution1,solution2)
@@ -25,17 +25,18 @@ def combinationSum( candidates, target):
                 #                                                                                                                             so basically its dp[5] = dp[3]+dp[2] in which dp[2] = 
                 for prevSol in dp[i-c]:
                     dp[i].append(prevSol+[c])
-
+    print(dp[target])
+    print(len(min(dp[target],key=len)))
     return dp[target]
 
 
-    
-  
-   
-  
-    
-        
 
-        
-        
-print(combinationSum([1,2,3], 5))
+print(combinationSum([2],3))
+
+
+
+
+
+
+
+
